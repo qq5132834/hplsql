@@ -31,7 +31,7 @@ public class Plsql {
 				+ " CALL P_PROCEDUER('sics');" ;
 	  
 	  //查询语句
-	  sql = "select id, name,age from userinfos";
+//	  sql = "select id, name,age from userinfos;";
 	  
 	  
 //	  args = new String[]{"-version"};  //查看版本
