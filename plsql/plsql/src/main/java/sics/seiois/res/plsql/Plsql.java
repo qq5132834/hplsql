@@ -22,42 +22,79 @@ public class Plsql {
   public static void main(String[] args) throws Exception {
 	  
 	  //存储过程
-	  String sql = " CREATE PROCEDURE P_PROCEDUER(IN input STRING, OUT output STRING)	"
-	  					+ " BEGIN "
-	  					+ " insert into userinfos values(99,'99',99)  "
-	  					+ " select name from userinfos where id = 3 "
-	  					+ " update userinfos set age=98 where id = 1 "
-	  					+ " update userinfos set age=97 where id = 2 "
-	  					+ " SET result = 'hello,';	"
-	  					+ " PRINT result || ' ' || input; "
-	  					+ " END; " 
-				+ " PRINT " 
-				+ " CALL P_PROCEDUER('world .');" ;
 	  
-	 String sql1 = " CREATE PROCEDURE P_PROCEDUER() "
-			+ " BEGIN "
-//			+ " EXECUTE IMMEDIATE 'create table account_user( "
-//			+   "       userno varchar(255), "
-//			+   "       username varchar(255), "
-//			+   "       balance varchar(255) "
-//			+   " )' "
-			+   " EXECUTE 'INSERT INTO account_user VALUES(10, 10, 10)' "
-//			+   " insert into account_user(userno,username,balance) values('2','支票','100') "
-			+   " commit; "
-			+   " EXCEPTION "
-			+ 	" WHEN OTHERS THEN "
-			+   " ROLLBACK; "
-			+ 	" END; "
-	  		+ " CALL P_PROCEDUER() ";
-	  
-	  //查询语句
-//	  sql = "select id, name,age from userinfos;";
+	  String sql = " CREATE PROCEDURE P_PROCEDUER() "
+				+ " BEGIN "
+				+   " EXECUTE ' INSERT INTO auto_ei_entity_people(identify,real_name,telphone) SELECT identify,real_name, subString(telphone,1,11) FROM auto_ei_mid_people  ' "
+				+   " commit; "
+				+   " EXCEPTION "
+				+ 	" WHEN OTHERS THEN "
+				+   " ROLLBACK; "
+				+ 	" END; "
+		  		+ " CALL P_PROCEDUER() ";
 	  
 	  
-//	  args = new String[]{"-version"};  //查看版本
-	  args = new String[]{"-e", sql1 };  
+	  
+	  
+	//	  args = new String[]{"-version"};  //查看版本
+	  args = new String[]{"-e", sql };  
     
 	  System.exit(new Exec().run(args));
 	  
   }
+  
+  /***
+   * 数据库函数调用
+   * @return
+   */
+  public static String func(){
+	  String sql2  = " CREATE PROCEDURE P_PROCEDUER() "
+				+ " BEGIN "
+				+ " EXECUTE 'select ADDN(4,19)' "
+				+ " END; "
+		  		+ " CALL P_PROCEDUER() ";
+	  return sql2;
+  }
+  
+  /***
+   * 创表和插入数据
+   * @return
+   */
+  public static String createTableAndInsert(){
+		 String sql1 = " CREATE PROCEDURE P_PROCEDUER() "
+					+ " BEGIN "
+//					+ " EXECUTE IMMEDIATE 'create table account_user( "
+//					+   "       userno varchar(255), "
+//					+   "       username varchar(255), "
+//					+   "       balance varchar(255) "
+//					+   " )' "
+					+   " EXECUTE 'INSERT INTO account_user VALUES(10, 10, 10)' "
+//					+   " insert into account_user(userno,username,balance) values('2','支票','100') "
+					+   " commit; "
+					+   " EXCEPTION "
+					+ 	" WHEN OTHERS THEN "
+					+   " ROLLBACK; "
+					+ 	" END; "
+			  		+ " CALL P_PROCEDUER() ";
+		 return sql1;
+  }
+  
+  /***
+   * hello 规则
+   * @return
+   */
+  public static String helloWrold(){
+	  String sql = " CREATE PROCEDURE P_PROCEDUER(IN input STRING, OUT output STRING)	"
+				+ " BEGIN "
+				+ " select name from userinfos where id = 3 "
+				+ " update userinfos set age=98 where id = 1 "
+				+ " update userinfos set age=97 where id = 2 "
+				+ " SET result = 'hello,';	"
+				+ " PRINT result || ' ' || input; "
+				+ " END; " 
+		+ " PRINT " 
+		+ " CALL P_PROCEDUER('world .');" ;
+	  return sql;
+  }
+  
 }

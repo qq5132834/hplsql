@@ -195,24 +195,44 @@ public class Conn {
 //	  return connection;
 //  }
   
+//  Connection getConnection(){
+////	  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		Connection connection = null;
+//		try {
+//
+//			System.out.println(Conn.class.getName()+"，路径.");
+//			connection =  DriverManager.getConnection("jdbc:mysql://192.168.133.128:33306/baseinfo","root","123456");
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	  return connection;
+//  }
+  
   Connection getConnection(){
-//	  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
+	  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		Connection connection = null;
 		try {
 
-			System.out.println(Conn.class.getName()+"，路径.");
-			connection =  DriverManager.getConnection("jdbc:mysql://192.168.133.128:33306/baseinfo","root","123456");
+			System.out.println("\n"+Conn.class.getName()+"，路径.");
+			connection = DriverManager.getConnection("jdbc:postgresql://192.168.152.171:5432/postgres","postgres","123456");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	  return connection;
   }
+  
   
   /**
    * Open a new connection
