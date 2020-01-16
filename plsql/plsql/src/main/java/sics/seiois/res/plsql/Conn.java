@@ -176,17 +176,37 @@ public class Conn {
     return c;
   }
   
+//  Connection getConnection(){
+//	  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
+//		try {
+//			Class.forName("com.facebook.presto.jdbc.PrestoDriver");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		PrestoConnection connection = null;
+//		try {
+//
+//			System.out.println(Conn.class.getName()+"，路径.");
+//			connection = (PrestoConnection) DriverManager.getConnection("jdbc:presto://192.168.152.171:8090/mysql/baseinfo","root",null);
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	  return connection;
+//  }
+  
   Connection getConnection(){
-	  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
+//	  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
 		try {
-			Class.forName("com.facebook.presto.jdbc.PrestoDriver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		PrestoConnection connection = null;
+		Connection connection = null;
 		try {
 
-			connection = (PrestoConnection) DriverManager.getConnection("jdbc:presto://192.168.152.171:8090/mysql/baseinfo","root",null);
+			System.out.println(Conn.class.getName()+"，路径.");
+			connection =  DriverManager.getConnection("jdbc:mysql://192.168.133.128:33306/baseinfo","root","123456");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -202,6 +222,7 @@ public class Conn {
 	  
 	  Connection connection = this.getConnection();
 	  if(connection!=null){
+		  System.out.println("connection is not null.");
 		  return connection;
 	  }
 	  
