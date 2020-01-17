@@ -391,6 +391,11 @@ public class TestPlsqlLocal {
   public void testWhile() throws Exception {
     run("while");
   }
+  
+  @Test
+  public void dimension() throws Exception {
+    run("dimension");
+  }
 
   /**
    * Run a test file

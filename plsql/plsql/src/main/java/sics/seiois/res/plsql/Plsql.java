@@ -29,12 +29,37 @@ public class Plsql {
 	  
 	  String executeSQL = "INSERT INTO auto_ei_entity_people(identify,real_name,telphone) SELECT identify,real_name, subString(telphone,1,11) FROM auto_ei_mid_people;";
 	  
+	  
 	  String recordSQL = "  SELECT ei_record_sql(\\'"+dimensionId+"\\', \\'"+batch+"\\', \\'"+ruleId+"\\', \\'"+executeSQL+"\\'); ";
 	  
 	  String sql = "CREATE PROCEDURE P_PROCEDUER() "
+			    + " DECLARE  "
+			    + "   _sql VARCHAR; "
+			    + "   _rec VARCHAR; "
+			    + "   _fuhao VARCHAR := ' \\' ';  "
+			    + "   _dimensionId VARCHAR :='ei123456789'; "
+			    + "   _batch VARCHAR :='batch1'; "
+			    + "   _ruleId VARCHAR :='rule_id_001'; "
 				+ " BEGIN "
-				+   " EXECUTE '  " + executeSQL + " ' ;"
-				+   " EXECUTE '  " + recordSQL + " ' ;"
+				+ "   FOR item IN "
+				+ "   ("
+				+ "      select telphone, identify from auto_ei_mid_people where telphone is not null  "
+				+ "   ) "
+				+ "   LOOP "
+				+ "      IF 11 < LEN(item.telphone) THEN "
+				+ "		    PRINT(LEN(item.telphone));	"
+				+ "			PRINT(_fuhao);	"
+				+ "			_sql := ' UPDATE  auto_ei_mid_people SET  telphone = subString(trim(' + _fuhao + item.telphone + _fuhao + '),1,11) WHERE identify =  trim(' + _fuhao + item.identify + _fuhao +');' "
+				+ "			PRINT(_sql)	"
+				+ " 		EXECUTE _sql ;"
+				+ "			_rec := ' SELECT ei_record_sql( ' + _dimensionId +' , ' + _batch + ' , ' + _ruleId + ' , ' + _dimensionId +' );'	"
+				+ "			PRINT(_rec)	"
+				+ " 		EXECUTE _rec ;"
+//				+ " 		EXECUTE ' SELECT ei_record_sql(\\'"+dimensionId+"\\', \\'"+batch+"\\', \\'"+ruleId+"\\', _sql ); ' ;"
+				+ "		 END IF; "
+				+ "   END LOOP; "
+//				+   " EXECUTE '  " + executeSQL + " ' ;"
+//				+   " EXECUTE '  " + recordSQL + " ' ;"
 				+   " COMMIT; "
 				+   " EXCEPTION "
 				+ 	" WHEN OTHERS THEN "
@@ -46,8 +71,10 @@ public class Plsql {
 	  
 	  
 	//	  args = new String[]{"-version"};  //查看版本
-	  args = new String[]{"-e", sql };  
+//	  args = new String[]{"-e", sql };  
     
+	  args = new String[]{ "-f", "src/test/queries/local/dimension.sql" };
+	  
 	  System.exit(new Exec().run(args));
 	  
   }
