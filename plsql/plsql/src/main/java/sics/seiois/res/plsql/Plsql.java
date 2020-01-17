@@ -23,14 +23,23 @@ public class Plsql {
 	  
 	  //存储过程
 	  
-	  String sql = " CREATE PROCEDURE P_PROCEDUER() "
+	  String dimensionId = "ei123456789";
+	  String batch = "batch1";
+	  String ruleId = "rule_id_001";
+	  
+	  String executeSQL = "INSERT INTO auto_ei_entity_people(identify,real_name,telphone) SELECT identify,real_name, subString(telphone,1,11) FROM auto_ei_mid_people;";
+	  
+	  String recordSQL = "  SELECT ei_record_sql(\\'"+dimensionId+"\\', \\'"+batch+"\\', \\'"+ruleId+"\\', \\'"+executeSQL+"\\'); ";
+	  
+	  String sql = "CREATE PROCEDURE P_PROCEDUER() "
 				+ " BEGIN "
-				+   " EXECUTE ' INSERT INTO auto_ei_entity_people(identify,real_name,telphone) SELECT identify,real_name, subString(telphone,1,11) FROM auto_ei_mid_people  ' "
-				+   " commit; "
+				+   " EXECUTE '  " + executeSQL + "" + " ' ;"
+				+   " EXECUTE '  " + "" + recordSQL + " ' ;"
+				+   " COMMIT; "
 				+   " EXCEPTION "
 				+ 	" WHEN OTHERS THEN "
 				+   " ROLLBACK; "
-				+ 	" END; "
+				+ " END; "
 		  		+ " CALL P_PROCEDUER() ";
 	  
 	  
