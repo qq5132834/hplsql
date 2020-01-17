@@ -33,8 +33,8 @@ public class Plsql {
 	  
 	  String sql = "CREATE PROCEDURE P_PROCEDUER() "
 				+ " BEGIN "
-				+   " EXECUTE '  " + executeSQL + "" + " ' ;"
-				+   " EXECUTE '  " + "" + recordSQL + " ' ;"
+				+   " EXECUTE '  " + executeSQL + " ' ;"
+				+   " EXECUTE '  " + recordSQL + " ' ;"
 				+   " COMMIT; "
 				+   " EXCEPTION "
 				+ 	" WHEN OTHERS THEN "
