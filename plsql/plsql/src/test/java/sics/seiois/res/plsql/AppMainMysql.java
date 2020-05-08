@@ -28,7 +28,7 @@ public class AppMainMysql {
 		PrestoConnection connection = null;
 		try {
 
-			connection = (PrestoConnection) DriverManager.getConnection("jdbc:presto://192.168.133.129:8090/mysql/baseinfo","root",null);
+			connection = (PrestoConnection) DriverManager.getConnection("jdbc:presto://192.168.152.121:8081/ei/public","root",null);
 //			connection = (PrestoConnection) DriverManager.getConnection("jdbc:presto://192.168.133.128:8183/mysql/baseinfo","mysql",null);
 //			connection = (PrestoConnection) DriverManager.getConnection("jdbc:presto://127.0.0.1:8080/mysql/baseinfo","root",null);
 
@@ -43,7 +43,7 @@ public class AppMainMysql {
 //			}
 //			rs.close();
 
-			rs = (PrestoResultSet) stmt.executeQuery("select id, name,age from userinfos");
+			rs = (PrestoResultSet) stmt.executeQuery("select id, name,age from userinfo");
 			while (rs.next()) {
 				System.out.println(rs.getInt(1)+"/"+rs.getString(2)+"/"+rs.getInt(3));
 			}

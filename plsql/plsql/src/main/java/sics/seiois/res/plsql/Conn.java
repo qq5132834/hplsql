@@ -217,7 +217,7 @@ public class Conn {
   Connection getConnection(){
 	  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName("com.facebook.presto.jdbc.PrestoDriver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -225,7 +225,7 @@ public class Conn {
 		try {
 
 			System.out.println("\n"+Conn.class.getName()+"，路径.");
-			connection = DriverManager.getConnection("jdbc:postgresql://192.168.152.171:5432/postgres","postgres","123456");
+			connection = DriverManager.getConnection("jdbc:presto://192.168.152.121:8081/ei/public","root",null);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
