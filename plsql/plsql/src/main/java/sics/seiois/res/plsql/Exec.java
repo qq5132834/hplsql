@@ -1124,7 +1124,7 @@ public class Exec extends PlsqlBaseVisitor<Integer> {
    */
   @Override
   public Integer visitCorrect_stmt(PlsqlParser.Correct_stmtContext ctx) {
-    return super.visitCorrect_stmt(ctx);
+    return exec.stmt.correct(ctx);
   }
 
   /**

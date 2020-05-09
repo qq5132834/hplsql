@@ -23,8 +23,8 @@ public class Plsql {
 	  
 	  //存储过程
 	  
-	   String sql = " select id, name,age from userinfo; ";
-	  
+	   String sql = " select id, name,age from userinfo where id = 1; ";
+//	  String sql = " on table(c1, c2, c3) as t  where t.c1=1 and t.c2=2 correct t.c1=3; ";
 	  
 	  
 	//	  args = new String[]{"-version"};  //查看版本
