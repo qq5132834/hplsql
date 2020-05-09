@@ -101,7 +101,8 @@ stmt :
      | host
      | null_stmt
      | expr_stmt     
-     | semicolon_stmt      // Placed here to allow null statements ;;...          
+     | semicolon_stmt      // Placed here to allow null statements ;;...
+     | correct_stmt
      ;
      
 semicolon_stmt :
@@ -551,7 +552,15 @@ insert_stmt_row:
 insert_directory_stmt :
        T_INSERT T_OVERWRITE T_LOCAL? T_DIRECTORY expr_file expr_select
      ;
-     
+
+correct_stmt :
+       T_ON table_name correct_stmt_cols? where_clause? T_CORRECT update_assignment
+      ;
+
+correct_stmt_cols :
+       T_OPEN_P ident (T_COMMA ident)* T_CLOSE_P from_alias_clause?
+     ;
+
 exit_stmt :
        T_EXIT L_ID? (T_WHEN bool_expr)?
      ;
@@ -1534,6 +1543,7 @@ non_reserved_words :                      // Tokens that are not reserved words 
      | T_XACT_ABORT
      | T_XML
      | T_YES
+     | T_CORRECT
      ;
 
 // Lexer rules
@@ -1850,7 +1860,8 @@ T_WITHOUT         : W I T H O U T ;
 T_WORK            : W O R K ;
 T_XACT_ABORT      : X A C T '_' A B O R T ;
 T_XML             : X M L ;
-T_YES             : Y E S ; 
+T_YES             : Y E S ;
+T_CORRECT         : C O R R E C T ;
 
 // Functions with specific syntax
 T_ACTIVITY_COUNT       : A C T I V I T Y '_' C O U N T ;

@@ -23,7 +23,7 @@ public class Plsql {
 	  
 	  //存储过程
 	  
-	   String sql = " select now(); ";
+	   String sql = " select id, name,age from userinfo; ";
 	  
 	  
 	  
