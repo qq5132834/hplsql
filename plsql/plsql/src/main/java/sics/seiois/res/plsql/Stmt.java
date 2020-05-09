@@ -713,13 +713,13 @@ public class Stmt {
     return insertValues(ctx); 
   }
 
-  /**
-   * SQL CORRECT statement
-   */
-  public Integer correct(PlsqlParser.Correct_stmtContext ctx){
-    System.out.println("hello correct.");
-    return 1;
-  }
+//  /**   转移至Correct类中
+//   * SQL CORRECT statement
+//   */
+//  public Integer correct(PlsqlParser.Correct_stmtContext ctx){
+//    System.out.println("hello correct.");
+//    return 1;
+//  }
 
   /**
    * SQL INSERT SELECT statement

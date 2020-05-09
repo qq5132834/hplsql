@@ -93,6 +93,7 @@ public class Exec extends PlsqlBaseVisitor<Integer> {
   Meta meta;
   Select select;
   Stmt stmt;
+  Correct correct;
   Conn conn;  
   
   int rowCount = 0;  
@@ -797,6 +798,7 @@ public class Exec extends PlsqlBaseVisitor<Integer> {
     expr = new Expression(this);
     select = new Select(this);
     stmt = new Stmt(this);
+    correct = new Correct(this);
     converter = new Converter(this);
         
     function = new Function(this);
