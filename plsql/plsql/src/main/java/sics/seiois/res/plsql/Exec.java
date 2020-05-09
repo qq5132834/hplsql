@@ -1118,7 +1118,15 @@ public class Exec extends PlsqlBaseVisitor<Integer> {
   public Integer visitInsert_stmt(PlsqlParser.Insert_stmtContext ctx) {
     return exec.stmt.insert(ctx); 
   }
-  
+
+  /**
+   * SQL CORRECT statement
+   */
+  @Override
+  public Integer visitCorrect_stmt(PlsqlParser.Correct_stmtContext ctx) {
+    return super.visitCorrect_stmt(ctx);
+  }
+
   /**
    * INSERT DIRECTORY statement
    */
