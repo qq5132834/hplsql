@@ -83,6 +83,7 @@ stmt :
      | merge_stmt
      | open_stmt
      | print_stmt
+     | obtain_stmt
      | quit_stmt
      | raise_stmt
      | resignal_stmt
@@ -683,6 +684,11 @@ index_mssql_storage_clause :
 print_stmt :            // PRINT statement 
        T_PRINT expr
      | T_PRINT T_OPEN_P expr T_CLOSE_P
+     ;
+
+obtain_stmt :
+       T_OBTAIN expr
+     | T_OBTAIN T_OPEN_P expr T_CLOSE_P
      ;
 
 quit_stmt :
@@ -1444,7 +1450,8 @@ non_reserved_words :                      // Tokens that are not reserved words 
      | T_PRECISION     
      | T_PRESERVE
      | T_PRIMARY
-     | T_PRINT 
+     | T_PRINT
+     | T_OBTAIN
      | T_PROC
      | T_PROCEDURE 
      | T_PWD     
@@ -1764,7 +1771,8 @@ T_PLS_INTEGER     : P L S '_' I N T E G E R ;
 T_PRECISION       : P R E C I S I O N ; 
 T_PRESERVE        : P R E S E R V E ; 
 T_PRIMARY         : P R I M A R Y ;
-T_PRINT           : P R I N T ; 
+T_PRINT           : P R I N T ;
+T_OBTAIN          : O B T A I N ; //similar T_PRINT
 T_PROC            : P R O C ;
 T_PROCEDURE       : P R O C E D U R E ;
 T_QUALIFY         : Q U A L I F Y ;

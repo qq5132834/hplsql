@@ -1504,6 +1504,18 @@ public class PlsqlBaseListener implements PlsqlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterObtain_stmt(PlsqlParser.Obtain_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitObtain_stmt(PlsqlParser.Obtain_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterQuit_stmt(PlsqlParser.Quit_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}

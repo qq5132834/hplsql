@@ -1248,6 +1248,16 @@ public interface PlsqlListener extends ParseTreeListener {
 	 */
 	void exitPrint_stmt(PlsqlParser.Print_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PlsqlParser#obtain_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterObtain_stmt(PlsqlParser.Obtain_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlsqlParser#obtain_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitObtain_stmt(PlsqlParser.Obtain_stmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PlsqlParser#quit_stmt}.
 	 * @param ctx the parse tree
 	 */

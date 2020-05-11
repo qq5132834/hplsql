@@ -1130,6 +1130,7 @@ public class Exec extends PlsqlBaseVisitor<Integer> {
     return exec.correct.correct(ctx);
   }
 
+
   /**
    * INSERT DIRECTORY statement
    */
@@ -1833,7 +1834,15 @@ public class Exec extends PlsqlBaseVisitor<Integer> {
   public Integer visitPrint_stmt(PlsqlParser.Print_stmtContext ctx) {
 	  return exec.stmt.print(ctx); 
   }
-  
+
+  /**
+   * OBTAIN statement
+   */
+  @Override
+  public Integer visitObtain_stmt(PlsqlParser.Obtain_stmtContext ctx) {
+    return exec.correct.obatin(ctx);
+  }
+
   /** 
    * QUIT statement 
    */

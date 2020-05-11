@@ -19,6 +19,7 @@ public class Correct {
     boolean isPrintln = true;
     StringBuilder selectSql;
     StringBuilder updateSql;
+    String obatin;
     ArrayList<Expr> correctExprList = new ArrayList<>();
     ArrayList<Col> selectColumnList = new ArrayList<>();
     ArrayList<Col> whereColumnList = new ArrayList<>();
@@ -131,6 +132,24 @@ public class Correct {
             }
         }
 
+        try{
+            List<String> sqlList = new ArrayList<>();
+            sqlList.add("obtain (1+5)");
+            sqlList.add("obtain coalesce(NULL,1,NULL,NULL);");
+            sqlList.add("obtain fvalue(1,2,10,5,5);");
+            sqlList.add("obtain coalesce(fvalue(1,2,10,5,5),101);");
+            for (String ssql: sqlList) {
+                String[] args = new String[]{"-e", ssql};
+                Exec exec = new Exec();
+                exec.run(args);
+                String s = exec.correct.obatin;
+                println("res:" + s);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
         return 1;
     }
 
@@ -170,6 +189,8 @@ public class Correct {
     int getColumnsCounts(){
         return correctExprList.size() + selectColumnList.size();
     }
+
+
 
     //获取where_caluse中的查询条件
 //    void getCorrectWhereCol(PlsqlParser.Where_clauseContext ctx){
@@ -303,6 +324,18 @@ public class Correct {
     void trace(ParserRuleContext ctx, Var var, ResultSet rs, ResultSetMetaData rm, int idx) throws SQLException {
         exec.trace(ctx, var, rs, rm, idx);
     }
+
+    /**
+     * OBTAIN Statement
+     */
+    public Integer obatin(PlsqlParser.Obtain_stmtContext ctx) {
+        trace(ctx, "OBATIN");
+        if (ctx.expr() != null) {
+            obatin = evalPop(ctx.expr()).toString();
+        }
+        return 0;
+    }
+
 
     private static class Col{
         private String columnName;

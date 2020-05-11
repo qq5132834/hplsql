@@ -755,6 +755,12 @@ public interface PlsqlVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrint_stmt(PlsqlParser.Print_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PlsqlParser#obtain_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitObtain_stmt(PlsqlParser.Obtain_stmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PlsqlParser#quit_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
