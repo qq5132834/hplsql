@@ -958,6 +958,16 @@ public interface PlsqlListener extends ParseTreeListener {
 	 */
 	void exitCorrect_stmt_cols(PlsqlParser.Correct_stmt_colsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PlsqlParser#correct_update_assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterCorrect_update_assignment(PlsqlParser.Correct_update_assignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlsqlParser#correct_update_assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitCorrect_update_assignment(PlsqlParser.Correct_update_assignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PlsqlParser#exit_stmt}.
 	 * @param ctx the parse tree
 	 */

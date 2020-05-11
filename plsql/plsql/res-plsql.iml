@@ -10,7 +10,7 @@
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <content url="file://$MODULE_DIR$/target/generated-sources/antlr4">
-      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/antlr4" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/antlr4" isTestSource="false" generated="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

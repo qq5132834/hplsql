@@ -1156,6 +1156,18 @@ public class PlsqlBaseListener implements PlsqlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCorrect_update_assignment(PlsqlParser.Correct_update_assignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCorrect_update_assignment(PlsqlParser.Correct_update_assignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExit_stmt(PlsqlParser.Exit_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}

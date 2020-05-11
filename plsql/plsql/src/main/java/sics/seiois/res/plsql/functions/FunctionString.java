@@ -43,9 +43,14 @@ public class FunctionString extends Function {
     f.map.put("SUBSTRING", new FuncCommand() { public void run(PlsqlParser.Expr_func_paramsContext ctx) { substr(ctx); }});
     f.map.put("TO_CHAR", new FuncCommand() { public void run(PlsqlParser.Expr_func_paramsContext ctx) { toChar(ctx); }});
     f.map.put("UPPER", new FuncCommand() { public void run(PlsqlParser.Expr_func_paramsContext ctx) { upper(ctx); }});
+
+    //新增一个FVALUE函数
+    f.map.put("FVALUE", new FuncCommand() { public void run(PlsqlParser.Expr_func_paramsContext ctx) { fvalue(ctx); }});
     
     f.specMap.put("SUBSTRING", new FuncSpecCommand() { public void run(PlsqlParser.Expr_spec_funcContext ctx) { substring(ctx); }});
     f.specMap.put("TRIM", new FuncSpecCommand() { public void run(PlsqlParser.Expr_spec_funcContext ctx) { trim(ctx); }});
+
+
   }
   
   /**
@@ -291,4 +296,55 @@ public class FunctionString extends Function {
     String str = evalPop(ctx.func_param(0).expr()).toString().toUpperCase(); 
     evalString(str);
   }
+
+  void fvalue(PlsqlParser.Expr_func_paramsContext ctx) {
+//    System.out.println("hello fvalue.");
+    if (ctx.func_param().size() < 4) {
+      evalNull();
+      return;
+    }
+
+    //s,t,fs,ft,fd
+    String s = evalPop(ctx.func_param(0).expr()).toString();  //原值
+    String t = evalPop(ctx.func_param(1).expr()).toString();  //set值
+    double fs = evalPop(ctx.func_param(2).expr()).doubleValue(); //原值可行度
+    double ft = evalPop(ctx.func_param(3).expr()).doubleValue(); //set值可行度
+    double fd = evalPop(ctx.func_param(4).expr()).doubleValue(); //可信容忍度
+
+    String res = "";
+
+    if(Math.abs(ft-fs) < fd && s.equals(t) && ft < fs){
+//      coalesce(null,s)
+      res = s;
+    }
+    else if(Math.abs(ft-fs) < fd && s.equals(t) && fs < ft){
+//      coalesce(fupdate('f_relation',rowid,'fs',ft),s)
+      //TODO fupdate
+      res = s;
+    }
+    else if(Math.abs(ft-fs) < fd &&  !s.equals(t) ){
+//      coalesce(fnotify(rowid,'relation','fs'),s)
+      //TODO fnotify
+      System.out.println("Math.abs(ft-fs) < fd &&  !s.equals(t)");
+      res = s;
+    }
+
+    else if(fs - ft > fd){
+//        coalesce(null,s)
+      System.out.println("fs - ft > fd");
+      res = s;
+    }
+    else if(ft - fs > fd){
+//      coalesce(fupdate('f_relation',rowid,'fs',ft),t)
+      //TODO fupdate;
+      System.out.println("ft - fs > fd");
+      res = t;
+    }
+    else{
+      return;
+    }
+//    System.out.println(res);
+    evalString(res);
+  }
+
 }

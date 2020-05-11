@@ -22,18 +22,21 @@ public class Plsql {
   public static void main(String[] args) throws Exception {
 	  
 	  //存储过程
-	  
-	   String sql = " select id, name,age from userinfo where id = 1; ";
-//	  String sql = " on table(c1, c2, c3) as t  where t.c1=1 and t.c2=2 correct t.c1=3; ";
-	  
-	  
-	//	  args = new String[]{"-version"};  //查看版本
+   //	  args = new String[]{"-version"};  //查看版本
+   //	  args = new String[]{ "-f", "src/test/queries/local/dimension.sql" };
+	  String sql = " select id, name,age from userinfo where id = 1; ";
+	  //args = new String[]{"-e", sql };
+	  //new Exec().run(args);
+
+	  sql = " on auto_ei_entity_hl003(name, city, addr ) as t  where t.row_id=2 correct t.city='xixi', t.addr=(1+2); ";
+	  sql = " PRINT coalesce(NULL,1,NULL,NULL);" +
+			  "PRINT fvalue(1,2,10,5,5);" +
+			  "PRINT coalesce(fvalue(1,2,10,5,5),101) ";
+//	  sql = " PRINT coalesce(NULL,1,NULL,NULL);";
 	  args = new String[]{"-e", sql };
-    
-//	  args = new String[]{ "-f", "src/test/queries/local/dimension.sql" };
-	  
-	  System.exit(new Exec().run(args));
-	  
+	  int i = new Exec().run(args);
+	  System.exit(i);
+
   }
   
   /***
