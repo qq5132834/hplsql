@@ -554,12 +554,17 @@ insert_directory_stmt :
      ;
 
 correct_stmt :
-       T_ON table_name correct_stmt_cols? where_clause? T_CORRECT update_assignment
+       T_ON table_name correct_stmt_cols? from_alias_clause? where_clause? correct_update_assignment
       ;
 
 correct_stmt_cols :
-       T_OPEN_P ident (T_COMMA ident)* T_CLOSE_P from_alias_clause?
+//       T_OPEN_P  select_list_set? select_list_limit? select_list_item (T_COMMA select_list_item)*  T_CLOSE_P
+       T_OPEN_P select_list T_CLOSE_P
      ;
+
+correct_update_assignment :
+    T_CORRECT update_assignment
+    ;
 
 exit_stmt :
        T_EXIT L_ID? (T_WHEN bool_expr)?
