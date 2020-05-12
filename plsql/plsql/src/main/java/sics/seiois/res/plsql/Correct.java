@@ -15,6 +15,8 @@ import java.util.*;
 
 public class Correct {
 
+    public static final String COLUMN_ROW_ID = "row_id";
+    public static final String COLUMN_SOURCE_DATA_ID = "source_data_id";
     static final String IDENTIFY = " ";
     boolean isPrintln = true;
     StringBuilder selectSql;
@@ -122,9 +124,7 @@ public class Correct {
                     System.out.println("");
                     exec.incRowCount();
 
-                    for (Col c : kv) {
-                        println(c.getColumnName() + "=" + c.getVal()); //print one line data
-                    }
+                    select_mm_f_relation(tableName,kv,correctExprList);
 
                 }
             }catch (Exception e){
@@ -132,33 +132,39 @@ public class Correct {
             }
         }
 
+        return 1;
+    }
+
+    public static String obtainExpr(String expr) throws Exception{
+        String[] args = new String[]{"-e", expr};
+        Exec exec = new Exec();
+        exec.run(args);
+        String s = exec.correct.obatin;
+        return s;
+    }
+
+    void select_mm_f_relation(String dimensionTableName, List<Col> cols, List<Expr> exprs) {
+
+        for (Col c : cols) {
+            println(c.getColumnName() + "=" + c.getVal()); //print one line data
+        }
+
+
+        for(Expr expr : exprs){
+            println("expr:" + expr.getColumnName() + "," + expr.getVal() + "," + expr.getAliasName() + "," + expr.getExpr());
+        }
+
         try{
             List<String> sqlList = new ArrayList<>();
-            sqlList.add("obtain (1+5)");
-            sqlList.add("obtain coalesce(NULL,1,NULL,NULL);");
-            sqlList.add("obtain fvalue(1,2,10,5,5);");
             sqlList.add("obtain coalesce(fvalue(1,2,10,5,5),101);");
             for (String ssql: sqlList) {
-                String[] args = new String[]{"-e", ssql};
-                Exec exec = new Exec();
-                exec.run(args);
-                String s = exec.correct.obatin;
-                println("res:" + s);
+                println("res:" + obtainExpr(ssql));
             }
+
         }catch(Exception e){
             e.printStackTrace();
         }
 
-
-        return 1;
-    }
-
-    void select_mm_f_relation(List<Col> list) {
-        Map<String, String> map = new HashMap<>();
-        for (Col col : list) {
-            map.put(col.getColumnName(),col.getVal());
-        }
-        String rowId = map.get("row_id");
         //TODO 调用MM查询接口
 
     }
@@ -247,22 +253,22 @@ public class Correct {
                         Col col = new Col();
                         col.setColumnName(columnName);
                         selectColumnList.add(col);
-                        if("row_id".toUpperCase().equals(columnName.toUpperCase())){
+                        if(COLUMN_ROW_ID.toUpperCase().equals(columnName.toUpperCase())){
                             isExistRowId = true;
                         }
-                        if("source_data_id".toUpperCase().equals(columnName.toUpperCase())){
+                        if(COLUMN_SOURCE_DATA_ID.toUpperCase().equals(columnName.toUpperCase())){
                             isSourceDataId = true;
                         }
                     }
                 }
                 if(!isExistRowId){
                     Col col = new Col();
-                    col.setColumnName("row_id");
+                    col.setColumnName(COLUMN_ROW_ID);
                     selectColumnList.add(col);
                 }
                 if(!isSourceDataId){
                     Col col = new Col();
-                    col.setColumnName("source_data_id");
+                    col.setColumnName(COLUMN_SOURCE_DATA_ID);
                     selectColumnList.add(col);
                 }
             }
@@ -337,7 +343,7 @@ public class Correct {
     }
 
 
-    private static class Col{
+    public static class Col{
         private String columnName;
         private String val;
         public String getColumnName() {
@@ -354,7 +360,7 @@ public class Correct {
         }
     }
 
-    private static class Expr extends Col{
+    public static class Expr extends Col{
         private String aliasName;
         private String expr;
 
