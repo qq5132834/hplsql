@@ -104,6 +104,7 @@ stmt :
      | expr_stmt     
      | semicolon_stmt      // Placed here to allow null statements ;;...
      | correct_stmt
+     | check_stmt
      ;
      
 semicolon_stmt :
@@ -559,12 +560,27 @@ correct_stmt :
       ;
 
 correct_stmt_cols :
-//       T_OPEN_P  select_list_set? select_list_limit? select_list_item (T_COMMA select_list_item)*  T_CLOSE_P
        T_OPEN_P select_list T_CLOSE_P
      ;
 
 correct_update_assignment :
     T_CORRECT update_assignment
+    ;
+
+check_stmt :
+    T_ON table_name T_WITH check_stmt_cols? check_stmt_alias? where_clause? check_assignment
+    ;
+
+check_stmt_cols :
+    T_OPEN_P select_list T_CLOSE_P
+    ;
+
+check_stmt_alias :
+    T_AS ident
+    ;
+
+check_assignment :
+    T_CHECK bool_expr
     ;
 
 exit_stmt :
@@ -1556,6 +1572,7 @@ non_reserved_words :                      // Tokens that are not reserved words 
      | T_XML
      | T_YES
      | T_CORRECT
+     | T_CHECK
      ;
 
 // Lexer rules
@@ -1874,7 +1891,8 @@ T_WORK            : W O R K ;
 T_XACT_ABORT      : X A C T '_' A B O R T ;
 T_XML             : X M L ;
 T_YES             : Y E S ;
-T_CORRECT         : C O R R E C T ;
+T_CORRECT         : C O R R E C T ;   //修正
+T_CHECK           : C H E C K ;       //检查
 
 // Functions with specific syntax
 T_ACTIVITY_COUNT       : A C T I V I T Y '_' C O U N T ;

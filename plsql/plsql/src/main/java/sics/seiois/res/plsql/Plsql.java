@@ -28,7 +28,7 @@ public class Plsql {
 	  //args = new String[]{"-e", sql };
 	  //new Exec().run(args);
 
-	  sql = " on auto_ei_entity_hl003(name, city, addr ) as t  where t.row_id=2 correct t.city='xixi', t.addr=(1+2); ";
+	  sql = " on auto_ei_entity_hl005(name,  addr ) as t  where t.row_id != 0 correct t.addr='xixi', t.name=(1+2); ";
 //	  sql = " PRINT coalesce(NULL,1,NULL,NULL);" +
 //			  "PRINT fvalue(1,2,10,5,5);" +
 //			  "PRINT coalesce(fvalue(1,2,10,5,5),101) ";

@@ -968,6 +968,46 @@ public interface PlsqlListener extends ParseTreeListener {
 	 */
 	void exitCorrect_update_assignment(PlsqlParser.Correct_update_assignmentContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PlsqlParser#check_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterCheck_stmt(PlsqlParser.Check_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlsqlParser#check_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitCheck_stmt(PlsqlParser.Check_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlsqlParser#check_stmt_cols}.
+	 * @param ctx the parse tree
+	 */
+	void enterCheck_stmt_cols(PlsqlParser.Check_stmt_colsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlsqlParser#check_stmt_cols}.
+	 * @param ctx the parse tree
+	 */
+	void exitCheck_stmt_cols(PlsqlParser.Check_stmt_colsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlsqlParser#check_stmt_alias}.
+	 * @param ctx the parse tree
+	 */
+	void enterCheck_stmt_alias(PlsqlParser.Check_stmt_aliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlsqlParser#check_stmt_alias}.
+	 * @param ctx the parse tree
+	 */
+	void exitCheck_stmt_alias(PlsqlParser.Check_stmt_aliasContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlsqlParser#check_assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterCheck_assignment(PlsqlParser.Check_assignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlsqlParser#check_assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitCheck_assignment(PlsqlParser.Check_assignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PlsqlParser#exit_stmt}.
 	 * @param ctx the parse tree
 	 */

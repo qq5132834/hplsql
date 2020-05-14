@@ -587,6 +587,30 @@ public interface PlsqlVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCorrect_update_assignment(PlsqlParser.Correct_update_assignmentContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PlsqlParser#check_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCheck_stmt(PlsqlParser.Check_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlsqlParser#check_stmt_cols}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCheck_stmt_cols(PlsqlParser.Check_stmt_colsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlsqlParser#check_stmt_alias}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCheck_stmt_alias(PlsqlParser.Check_stmt_aliasContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlsqlParser#check_assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCheck_assignment(PlsqlParser.Check_assignmentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PlsqlParser#exit_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
