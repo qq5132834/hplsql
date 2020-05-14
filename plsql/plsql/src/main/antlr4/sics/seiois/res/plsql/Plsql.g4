@@ -568,11 +568,15 @@ correct_update_assignment :
     ;
 
 check_stmt :
-    T_ON table_name T_WITH check_stmt_cols? check_stmt_alias? where_clause? check_assignment
+    T_ON table_name check_stmt_cols?  check_stmt_with_rows? check_stmt_alias? where_clause? check_assignment
     ;
 
 check_stmt_cols :
     T_OPEN_P select_list T_CLOSE_P
+    ;
+
+check_stmt_with_rows :
+    T_WITH  ident? (T_COMMA  ident)*
     ;
 
 check_stmt_alias :

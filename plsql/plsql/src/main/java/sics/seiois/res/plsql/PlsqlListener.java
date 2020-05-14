@@ -988,6 +988,16 @@ public interface PlsqlListener extends ParseTreeListener {
 	 */
 	void exitCheck_stmt_cols(PlsqlParser.Check_stmt_colsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PlsqlParser#check_stmt_with_rows}.
+	 * @param ctx the parse tree
+	 */
+	void enterCheck_stmt_with_rows(PlsqlParser.Check_stmt_with_rowsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlsqlParser#check_stmt_with_rows}.
+	 * @param ctx the parse tree
+	 */
+	void exitCheck_stmt_with_rows(PlsqlParser.Check_stmt_with_rowsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PlsqlParser#check_stmt_alias}.
 	 * @param ctx the parse tree
 	 */

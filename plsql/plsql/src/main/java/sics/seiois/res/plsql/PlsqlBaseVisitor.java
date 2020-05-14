@@ -703,6 +703,13 @@ public class PlsqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitCheck_stmt_with_rows(PlsqlParser.Check_stmt_with_rowsContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitCheck_stmt_alias(PlsqlParser.Check_stmt_aliasContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

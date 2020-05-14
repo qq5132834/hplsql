@@ -1192,6 +1192,18 @@ public class PlsqlBaseListener implements PlsqlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCheck_stmt_with_rows(PlsqlParser.Check_stmt_with_rowsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCheck_stmt_with_rows(PlsqlParser.Check_stmt_with_rowsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCheck_stmt_alias(PlsqlParser.Check_stmt_aliasContext ctx) { }
 	/**
 	 * {@inheritDoc}

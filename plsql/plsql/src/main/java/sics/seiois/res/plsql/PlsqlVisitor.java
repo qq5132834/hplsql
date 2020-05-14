@@ -599,6 +599,12 @@ public interface PlsqlVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCheck_stmt_cols(PlsqlParser.Check_stmt_colsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PlsqlParser#check_stmt_with_rows}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCheck_stmt_with_rows(PlsqlParser.Check_stmt_with_rowsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PlsqlParser#check_stmt_alias}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
