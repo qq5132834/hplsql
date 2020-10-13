@@ -78,7 +78,7 @@
     <commons-lang.version>2.6</commons-lang.version>
     <hive-exec.version>3.1.2</hive-exec.version>
     <hadoop.version>3.1.0</hadoop.version>
-    <junit.version>4.11</junit.version>
+    <junit.version>4.13.1</junit.version>
 
   </properties>
 
