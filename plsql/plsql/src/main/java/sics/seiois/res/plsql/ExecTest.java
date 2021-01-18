@@ -40,7 +40,9 @@ public class ExecTest {
             PlsqlParser parser = new PlsqlParser(tokens);
             ParseTree tree = parser.program();
             System.out.println(tree.toStringTree());
-            visit(tree);
+            Integer i = visit(tree);
+            System.out.println(i);
+            System.out.println("over!");
         }
 
     }

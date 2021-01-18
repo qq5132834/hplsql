@@ -35,6 +35,7 @@ public class Plsql {
 //	  sql = " PRINT coalesce(NULL,1,NULL,NULL);";
 	  args = new String[]{"-e", sql };
 	  int i = new Exec().run(args);
+	  System.out.println("i:" + i);
 	  System.exit(i);
 
   }
