@@ -74,7 +74,7 @@
     <!-- Library Dependency Versions -->
     <guava.version>19.0</guava.version>
     <commons-cli.version>1.2</commons-cli.version>
-    <commons-io.version>2.4</commons-io.version>
+    <commons-io.version>2.7</commons-io.version>
     <commons-lang.version>2.6</commons-lang.version>
     <hive-exec.version>3.1.2</hive-exec.version>
     <hadoop.version>3.1.0</hadoop.version>
